@@ -1,0 +1,9 @@
+Web Technology Laboratory
+Assignment No. 6: Build a dynamic web application using PHP and MySQL.
+An Employer to create a web-based employee management system to maintain it employee record. You are tasked to build a dynamic PHP web application that allow users to add, update, delete, and view employee records stored in a MySQL database.
+a. Create database tables in MySQL and create connection with PHP.
+b. Create the add, update, delete and retrieve functions in the PHP web app interacting with MySQL database.
+
+
+Build a dynamic web application using PHP 
+employee id, name, gender, take the according these detail and create registration form
