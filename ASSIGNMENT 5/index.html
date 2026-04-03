@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Om Sai Dairy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #2e8b57;
+    color: white;
+    padding: 20px 0;
+}
+
+header .container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+header img {
+    width: 120px;
+}
+
+header .text-group {
+    text-align: center;
+    flex: 1;
+}
+
+nav {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2e8b57;
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+nav a:hover {
+    color: #246b45;
+}
+
+.search-bar input {
+    padding: 8px;
+    width: 200px;
+}
+
+.search-bar button {
+    padding: 8px 12px;
+    background: #2e8b57;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+section h2 {
+    color: #2e8b57;
+    font-size: 2.2rem;
+}
+
+.btn {
+    background: #2e8b57;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: #246b45;
+}
+
+footer {
+    background: #2e8b57;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+/* LOGIN MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    justify-content:center;
+    align-items:center;
+}
+
+.login-box{
+    background:white;
+    padding:30px;
+    width:320px;
+    border-radius:10px;
+    text-align:center;
+}
+
+.login-box input{
+    width:90%;
+    padding:8px;
+    margin:8px 0;
+}
+
+.link{
+    color:#2e8b57;
+    cursor:pointer;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+    nav{
+        flex-direction: column;
+    }
+    nav ul{
+        flex-direction: column;
+    }
+    header .container{
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container">
+    <img src="logo.png" alt="Om Sai Dairy Logo">
+    <div class="text-group">
+        <h1>Om Sai Dairy</h1>
+        <p>Milk Collection • Farmer Records • Payments</p>
+    </div>
+    <button class="btn" onclick="openLogin()">Login</button>
+</div>
+</header>
+
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Services</a></li>
+<li><a href="#">Gallery</a></li>
+<li><a href="#">Facilities</a></li>
+<li><a href="#">Media</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+
+<div class="search-bar">
+<input type="text" placeholder="Search...">
+<button>Search</button>
+</div>
+</nav>
+
+<section>
+<h2>Welcome to Om Sai Dairy</h2>
+<p>
+We provide transparent milk collection, digital farmer records,
+and accurate payment systems for rural dairy farmers.
+</p>
+<button class="btn">Explore Our Services</button>
+</section>
+
+<footer>
+<p>© 2026 Om Sai Dairy. All Rights Reserved.</p>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal" id="loginModal">
+<div class="login-box">
+
+<div id="loginForm">
+<h2>Login</h2>
+<input type="text" id="loginUser" placeholder="Username">
+<input type="password" id="loginPass" placeholder="Password">
+<button class="btn" onclick="login()">Login</button>
+<p class="link" onclick="showRegister()">Create Account?</p>
+<br>
+<button onclick="closeLogin()">Close</button>
+</div>
+
+<div id="registerForm" style="display:none;">
+<h2>Register</h2>
+<input type="text" id="regUser" placeholder="Username">
+<input type="password" id="regPass" placeholder="Password">
+<input type="password" id="regConfirm" placeholder="Confirm Password">
+<button class="btn" onclick="register()">Register</button>
+<p class="link" onclick="showLogin()">Back to Login</p>
+</div>
+
+</div>
+</div>
+
+<script>
+
+// Prompt on load
+window.onload=function(){
+    let role=prompt("Enter your role (Admin / Farmer):");
+    if(role && role.trim()!==""){
+        alert("Welcome "+role+" to Om Sai Dairy!");
+    }else{
+        alert("Welcome Guest!");
+    }
+};
+
+let storedUser="";
+let storedPass="";
+
+function openLogin(){
+    document.getElementById("loginModal").style.display="flex";
+}
+function closeLogin(){
+    document.getElementById("loginModal").style.display="none";
+}
+
+function showRegister(){
+    document.getElementById("loginForm").style.display="none";
+    document.getElementById("registerForm").style.display="block";
+}
+
+function showLogin(){
+    document.getElementById("registerForm").style.display="none";
+    document.getElementById("loginForm").style.display="block";
+}
+
+function register(){
+    let user=document.getElementById("regUser").value;
+    let pass=document.getElementById("regPass").value;
+    let confirm=document.getElementById("regConfirm").value;
+
+    if(user.trim()===""||pass.trim()===""||confirm.trim()===""){
+        alert("All fields are required!");
+        return;
+    }
+
+    if(pass.length<4){
+        alert("Password must be at least 4 characters!");
+        return;
+    }
+
+    if(pass!==confirm){
+        alert("Passwords do not match!");
+        return;
+    }
+
+    storedUser=user;
+    storedPass=pass;
+    alert("Registration Successful!");
+    showLogin();
+}
+
+function login(){
+    let user=document.getElementById("loginUser").value;
+    let pass=document.getElementById("loginPass").value;
+
+    if(user.trim()===""||pass.trim()===""){
+        alert("All fields are required!");
+        return;
+    }
+
+    if(user===storedUser && pass===storedPass){
+        alert("Login Successful!");
+        closeLogin();
+    }else{
+        alert("Invalid Username or Password!");
+    }
+}
+
+</script>
+
+</body>
+</html>
